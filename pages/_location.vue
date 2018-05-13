@@ -1,5 +1,5 @@
 <script>
-import data from '~/resource/data.js';
+// import data from '~/resource/data.js';
 
 export default {
   asyncData({ params, error, payload }) {
