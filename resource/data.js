@@ -20,7 +20,7 @@ const convert = data => {
   let cinemaByID = {};
 
   // build and save locations
-  const locations = raw.cinemas.map(data => {
+  const locations = raw.cinemas.reduce((acc, data) => {
     const cinema = {
       slug: data.url[0].replace('http://www1.cineworld.co.uk/cinemas/', ''),
       name: data.name[0].replace('Cineworld ', ''),
@@ -28,9 +28,10 @@ const convert = data => {
     };
 
     cinemaByID[data.id] = cinema.slug;
+    acc[cinema.slug] = cinema;
 
-    return cinema;
-  });
+    return acc;
+  }, {});
 
   const films = raw.films.map(data => {
     const film = {

@@ -8,7 +8,7 @@ export default {
 
   computed: {
     location() {
-      return this.$store.state.locations[0];
+      return this.$store.state.locations[this.$route.params.location];
     },
   },
 };
