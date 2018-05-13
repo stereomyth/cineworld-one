@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { Parser } from 'xml2js';
-// import { toJson } from 'xml2json';
 
-// const url = 'http://localhost:3000/weekly_film_times.xml';
-const url = 'https://www.cineworld.co.uk/syndication/weekly_film_times.xml';
+const url =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000/weekly_film_times.xml'
+    : 'https://www.cineworld.co.uk/syndication/weekly_film_times.xml';
 
 const p = new Parser({ attrkey: 'xxx', mergeAttrs: true });
 
