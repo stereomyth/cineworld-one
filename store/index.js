@@ -8,6 +8,7 @@ const store = () => {
         return data.get().then(data => {
           commit('locations', data.locations);
           commit('films', data.films);
+          commit('weekly', data.weekly);
         });
       },
     },
@@ -18,6 +19,10 @@ const store = () => {
     },
 
     mutations: {
+      weekly(state, weekly) {
+        state.weekly = weekly;
+      },
+
       locations(state, locations) {
         state.locations = locations;
       },

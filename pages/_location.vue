@@ -8,7 +8,7 @@ export default {
 
   computed: {
     location() {
-      return this.$store.state.locations[this.$route.params.location];
+      return this.$store.state.weekly[this.$route.params.location];
     },
   },
 };
@@ -16,6 +16,7 @@ export default {
 
 <template>
   <section class="container">
+    <!-- <h1>{{location.name}}</h1> -->
     <pre>location: {{location}}</pre>
     <!-- <h2>Films</h2>
     <div class="flex">

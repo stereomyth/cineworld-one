@@ -13,7 +13,7 @@ const convert = data => {
   const raw = {
     cinemas: data.feed.cinemas[0].cinema,
     films: data.feed.films[0].film,
-    // screens: data.feed.performances.screening,
+    screens: data.feed.performances[0].screening,
   };
 
   let filmByID = {};
@@ -47,9 +47,37 @@ const convert = data => {
     return film;
   });
 
+  const weekly = raw.screens.reduce((acc, data) => {
+    const cid = cinemaByID[data.cinema[0]];
+    const film = filmByID[data.film[0]];
+
+    const attr = data.attributes[0];
+    let type = attr.includes('3D') ? '3D' : '2D';
+
+    if (attr.includes('IMAX')) {
+      type += '-IMAX';
+    } else if (attr.includes('4DX')) {
+      type += '-4DX';
+    }
+
+    acc[cid] = acc[cid] || {};
+    acc[cid][film] = acc[cid][film] || {};
+    acc[cid][film][type] = acc[cid][film][type] || [];
+
+    acc[cid][film][type].push({
+      date: data.date,
+      attr: attr.split(','),
+    });
+
+    return acc;
+  }, {});
+
+  // console.log(out['gloucester-quays']);
+
   return {
     locations,
     films,
+    weekly,
   };
 };
 
