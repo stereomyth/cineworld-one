@@ -10,6 +10,12 @@ export default {
       };
     });
   },
+
+  methods: {
+    log(message) {
+      console.log(message);
+    },
+  },
 };
 </script>
 
@@ -17,7 +23,7 @@ export default {
   <section class="container">
     <h2>Films</h2>
     <div class="flex">
-      <div v-for="film in films" :key="film.id" class="film">
+      <div v-for="film in films" :key="film.id" class="film" @click="log('hello')">
         {{ film.title }}
       </div>
     </div>
