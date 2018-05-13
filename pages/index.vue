@@ -1,19 +1,17 @@
 <script>
-import data from '~/resource/data.js';
-
 export default {
-  asyncData(context) {
-    return data.get().then(data => {
-      return {
-        locations: data.locations,
-        films: data.films,
-      };
-    });
-  },
-
   methods: {
     log(message) {
       console.log(message);
+    },
+  },
+
+  computed: {
+    locations() {
+      return this.$store.state.locations;
+    },
+    films() {
+      return this.$store.state.films;
     },
   },
 };
