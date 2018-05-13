@@ -1,7 +1,5 @@
-// import axios from 'axios';
-const axios = require('axios');
-// import { Parser } from 'xml2js';
-const Parser = require('xml2js').Parser;
+import axios from 'axios';
+import { Parser } from 'xml2js';
 
 const url =
   process.env.NODE_ENV === 'development'
@@ -17,7 +15,6 @@ const convert = data => {
     films: data.feed.films[0].film,
     // screens: data.feed.performances.screening,
   };
-  // console.log('cinemas: ', raw.cinemas);
 
   let filmByID = {};
   let cinemaByID = {};
@@ -55,8 +52,7 @@ const convert = data => {
   };
 };
 
-// export default {
-module.exports = {
+export default {
   get() {
     return new Promise((resolve, reject) => {
       // get xml file

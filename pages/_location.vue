@@ -1,34 +1,22 @@
 <script>
-// import data from '~/resource/data.js';
-
 export default {
-  asyncData({ params, error, payload }) {
-    if (payload) {
-      return { location: payload };
-    } else {
-      return { location: 'not built... shit' };
-    }
-  },
-
   methods: {
     log(message) {
       console.log(message);
     },
   },
 
-  // computed: {
-  //   films() {
-  //     return this.$store.state.films;
-  //   },
-  // },
+  computed: {
+    location() {
+      return this.$store.state.locations[0];
+    },
+  },
 };
 </script>
 
 <template>
   <section class="container">
-    <pre>
-      location: {{location}}
-    </pre>
+    <pre>location: {{location}}</pre>
     <!-- <h2>Films</h2>
     <div class="flex">
       <div v-for="film in films" :key="film.id" class="film" @click="log('hello')">

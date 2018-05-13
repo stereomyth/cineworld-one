@@ -1,11 +1,9 @@
 <script>
-import locations from '~/resource/locations';
-
 export default {
-  asyncData() {
-    return locations.get().then(locations => {
-      return { locations };
-    });
+  computed: {
+    locations() {
+      return this.$store.state.locations;
+    },
   },
 };
 </script>
@@ -14,9 +12,9 @@ export default {
   <section class="container">
     <h2>Locations</h2>
      <div class="flex">
-      <router-link :to="location.slug" v-for="location in locations" :key="location.slug" class="cinema">
+      <nuxt-link :to="location.slug" v-for="location in locations" :key="location.slug" class="cinema">
         {{ location.name }}
-      </router-link>
+      </nuxt-link>
     </div>
   </section>
 </template>

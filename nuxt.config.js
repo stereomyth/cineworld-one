@@ -1,5 +1,3 @@
-const data = require('./resource/data.js');
-
 module.exports = {
   /*
   ** Headers of the page
@@ -38,19 +36,6 @@ module.exports = {
           exclude: /(node_modules)/,
         });
       }
-    },
-  },
-
-  generate: {
-    routes: function() {
-      return data.get().then(data => {
-        return data.locations.map(location => {
-          return {
-            route: '/' + location.slug,
-            payload: location,
-          };
-        });
-      });
     },
   },
 };
