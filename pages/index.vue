@@ -1,35 +1,22 @@
 <script>
-export default {
-  methods: {
-    log(message) {
-      console.log(message);
-    },
-  },
+import locations from '~/resource/locations';
 
-  computed: {
-    locations() {
-      return this.$store.state.locations;
-    },
-    films() {
-      return this.$store.state.films;
-    },
+export default {
+  asyncData() {
+    return locations.get().then(locations => {
+      return { locations };
+    });
   },
 };
 </script>
 
 <template>
   <section class="container">
-    <h2>Films</h2>
-    <div class="flex">
-      <div v-for="film in films" :key="film.id" class="film" @click="log('hello')">
-        {{ film.title }}
-      </div>
-    </div>
     <h2>Locations</h2>
-    <div class="flex">
-      <div v-for="location in locations" :key="location.slug" class="cinema">
+     <div class="flex">
+      <router-link :to="location.slug" v-for="location in locations" :key="location.slug" class="cinema">
         {{ location.name }}
-      </div>
+      </router-link>
     </div>
   </section>
 </template>
@@ -40,16 +27,9 @@ div {
 }
 .cinema {
   padding: 3px;
-  /* margin: 3px; */
   width: 25%;
   font-size: 12px;
-}
-
-.film {
-  padding: 3px;
-  /* margin: 3px; */
-  width: 33.3%;
-  font-size: 12px;
+  display: block;
 }
 
 .flex {
