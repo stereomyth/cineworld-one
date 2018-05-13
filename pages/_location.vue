@@ -6,9 +6,7 @@ export default {
     if (payload) {
       return { location: payload };
     } else {
-      return data.get().then(data => {
-        return { location: data.locations[0] };
-      });
+      return { location: 'not built... shit' };
     }
   },
 
