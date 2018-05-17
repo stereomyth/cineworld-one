@@ -3,15 +3,15 @@ import data from '~/resource/data.js';
 
 const store = () => {
   return new Vuex.Store({
-    actions: {
-      nuxtServerInit({ commit }, { req }) {
-        return data.get().then(data => {
-          commit('locations', data.locations);
-          commit('films', data.films);
-          commit('weekly', data.weekly);
-        });
-      },
-    },
+    // actions: {
+    //   nuxtServerInit({ commit }, { req }) {
+    //     return data.get().then(data => {
+    //       commit('locations', data.locations);
+    //       commit('films', data.films);
+    //       commit('weekly', data.weekly);
+    //     });
+    //   },
+    // },
 
     state: {
       locations: [],
