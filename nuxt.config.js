@@ -4,6 +4,7 @@ module.exports = {
   */
   head: {
     title: 'Cineworld One',
+    htmlAttrs: { lang: 'en-GB' },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
