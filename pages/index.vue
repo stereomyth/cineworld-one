@@ -18,7 +18,8 @@ export default {
   <section class="container">
     <h2>Locations</h2>
     <div class="flex">
-      <nuxt-link :to="location.fields.slug.stringValue" v-for="location in locations" :key="location.fields.slug.stringValue" class="cinema">
+      <nuxt-link :to="location.fields.slug.stringValue" class="cinema"
+        v-for="location in locations" :key="location.fields.slug.stringValue">
         {{ location.fields.name.stringValue }}
       </nuxt-link>
     </div>
