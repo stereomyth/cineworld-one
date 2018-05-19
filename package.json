@@ -10,10 +10,12 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "func": "netlify-lambda serve functions"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "netlify-lambda": "^0.4.0",
     "nuxt": "^1.0.0",
     "xml2js": "^0.4.19"
   },
