@@ -39,19 +39,43 @@ const convertFilms = films => {
   }, {});
 };
 
+const convertAttr = data => {
+  let type = '';
+  let attr = {};
+
+  const handle = {
+    '2D'() {
+      type = '2D' + type;
+    },
+    '3D'() {
+      type = '3D' + type;
+    },
+    IMAX() {
+      type = type + '-IMAX';
+    },
+    '4DX'() {
+      type = type + '-4DX';
+    },
+    ST() {
+      attr.subs = true;
+    },
+  };
+
+  data.split(',').forEach(element => {
+    if (handle[element]) {
+      handle[element]();
+    }
+  });
+
+  return { type, attr };
+};
+
 const convertWeekly = screens => {
   return screens.reduce((acc, data) => {
     const cid = cinemaByID[data.cinema[0]];
     const film = filmByID[data.film[0]];
 
-    const attr = data.attributes[0];
-    let type = attr.includes('3D') ? '3D' : '2D';
-
-    if (attr.includes('IMAX')) {
-      type += '-IMAX';
-    } else if (attr.includes('4DX')) {
-      type += '-4DX';
-    }
+    const { type, attr } = convertAttr(data.attributes[0]);
 
     acc[cid] = acc[cid] || { ...locations[cid], films: {} };
     acc[cid].films[film] = acc[cid].films[film] || {
@@ -62,8 +86,8 @@ const convertWeekly = screens => {
       acc[cid].films[film].screens[type] || [];
 
     acc[cid].films[film].screens[type].push({
-      date: data.date,
-      attr: attr.split(','),
+      date: data.date[0],
+      ...attr,
     });
 
     return acc;
@@ -78,6 +102,7 @@ module.exports = data => {
 
     resolve({
       // locations,
+      // weekly,
       weekly: weekly['birmingham-broad-street'],
     });
   });
