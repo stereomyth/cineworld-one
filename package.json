@@ -6,13 +6,14 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build && netlify-lambda build functions",
+    "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
     "fdev": "netlify-lambda serve functions",
-    "fbuild": "netlify-lambda build functions"
+    "fbuild": "netlify-lambda build functions",
+    "fgen": "nuxt generate && netlify-lambda build functions"
   },
   "dependencies": {
     "axios": "^0.18.0",
