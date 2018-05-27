@@ -43,28 +43,55 @@ const convertAttr = data => {
   let type = '';
   let attr = {};
 
+  const deets = {
+    ST: 'subs',
+    AD: 'desc',
+    AUT: 'autism',
+    CINB: 'babies',
+    Box: 'box',
+    M4J: 'junior',
+    DBOX: 'dbox',
+    SS: 'superscreen',
+    SKY: 'sky',
+    STAR: 'star',
+    SC: 'hire',
+    VIP: 'vip',
+    AC: 'event',
+    FEV: 'festival',
+    MID: 'midnight',
+    PRE: 'unlimited',
+    QA: 'qa',
+  };
+
   const handle = {
-    '2D'() {
-      type = '2D' + type;
-    },
-    '3D'() {
-      type = '3D' + type;
-    },
-    IMAX() {
-      type = type + '-IMAX';
-    },
-    '4DX'() {
-      type = type + '-4DX';
-    },
-    ST() {
-      attr.subs = true;
-    },
+    '2D': () => (type = '2D' + type),
+    '3D': () => (type = '3D' + type),
+    '4DX': () => (type = type + '-4DX'),
+    IMAX: () => (type = type + '-IMAX'),
+
+    // ST: () => (attr.subs = true),
+    // AD: () => (attr.desc = true),
+    // AUT: () => (attr.autism = true),
+    // CINB: () => (attr.babies = true),
+    // Box: () => (attr.box = true),
+    // M4J: () => (attr.junior = true),
+    // DBOX: () => (attr.dbox = true),
+    // SS: () => (attr.superscreen = true),
+    // SKY: () => (attr.sky = true),
+    // STAR: () => (attr.star = true),
+    // SC: () => (attr.hire = true),
+    // VIP: () => (attr.vip = true),
+    // AC: () => (attr.event = true),
+    // FEV: () => (attr.festival = true),
+    // MID: () => (attr.midnight = true),
+    // PRE: () => (attr.unlimited = true),
+    // QA: () => (attr.qa = true),
   };
 
   data.split(',').forEach(element => {
-    if (handle[element]) {
-      handle[element]();
-    }
+    if (handle[element]) handle[element]();
+    if (deets[element]) attr[deets[element]] = true;
+    // if (handle[element]) handle[element]();
   });
 
   return { type, attr };
