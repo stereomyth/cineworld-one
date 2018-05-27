@@ -10,16 +10,11 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint",
-    "fdev": "netlify-lambda serve functions",
-    "fbuild": "netlify-lambda build functions",
-    "fgen": "nuxt generate && netlify-lambda build functions"
+    "precommit": "npm run lint"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "netlify-lambda": "^0.4.0",
-    "nuxt": "^1.0.0",
-    "xml2js": "^0.4.19"
+    "nuxt": "^1.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
