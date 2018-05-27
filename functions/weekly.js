@@ -11,8 +11,8 @@ exports.handler = function(event, context, callback) {
   axios
     .get(url)
     .then(res => parse(res.data))
-    .then(convert)
-    .then(save)
+    // .then(convert)
+    // .then(save)
     .then(data => {
       callback(null, {
         statusCode: 200,
