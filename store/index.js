@@ -1,5 +1,4 @@
 import Vuex from 'vuex';
-import data from '~/resource/data.js';
 
 const store = () => {
   return new Vuex.Store({
