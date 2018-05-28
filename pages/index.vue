@@ -1,15 +1,9 @@
 <script>
-import axios from 'axios';
+import remedy from '~/plugins/remedy';
 
 export default {
   asyncData() {
-    const db = `https://firestore.googleapis.com/v1beta1/projects/splice-cw/databases/(default)/documents/`;
-
-    return axios
-      .get(db + 'locations', { params: { pageSize: 200 } })
-      .then(res => ({
-        locations: res.data.documents,
-      }));
+    return remedy('locations').then(data => ({ locations: data }));
   },
 };
 </script>
@@ -17,19 +11,16 @@ export default {
 <template>
   <section class="container">
     <h2>Locations</h2>
-    <div class="flex">
-      <nuxt-link :to="location.fields.slug.stringValue" class="cinema"
-        v-for="location in locations" :key="location.fields.slug.stringValue">
-        {{ location.fields.name.stringValue }}
+     <div class="flex">
+      <nuxt-link :to="location.slug" class="cinema"
+        v-for="location in locations" :key="location.slug">
+        {{ location.name }}
       </nuxt-link>
     </div>
   </section>
 </template>
 
 <style>
-div {
-  box-sizing: border-box;
-}
 .cinema {
   padding: 3px;
   width: 25%;
