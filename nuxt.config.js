@@ -30,7 +30,8 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: ['axios'],
+    vendor: ['~/plugins/remedy'],
+
     /*
     ** Run ESLint on save
     */
