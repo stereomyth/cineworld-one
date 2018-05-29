@@ -1,7 +1,9 @@
 <script>
 import remedy from '~/plugins/remedy';
+import Film from '~/components/Film';
 
 export default {
+  components: { Film },
   asyncData({ params }) {
     return remedy('weekly', params.location).then(data => {
       const { films, ...cinema } = data;
@@ -16,11 +18,7 @@ export default {
     <h1>{{cinema.name}}</h1>
     <h2>Films</h2>
     <div class="flex">
-      <div v-for="film in films" :key="film.id" class="film">
-        <img :src="film.img" alt="">
-        <div>{{ film.title }}</div>
-        <div>{{ film.length }}m</div>
-      </div>
+      <Film v-for="film in films" :key="film.id" :film="film" />
     </div>
   </section>
 </template>
@@ -28,7 +26,7 @@ export default {
 <style lang="scss">
 .film {
   padding: 3px;
-  width: 20%;
+  width: 50%;
   font-size: 12px;
 
   img {
