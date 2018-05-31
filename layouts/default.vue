@@ -4,6 +4,10 @@ import FootBar from '~/components/FootBar';
 
 export default {
   components: { HeadBar, FootBar },
+
+  beforeCreate() {
+    this.$store.commit('setDay');
+  },
 };
 </script>
 

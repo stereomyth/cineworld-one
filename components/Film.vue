@@ -12,18 +12,41 @@ export default {
       return (hours ? hours + 'h ' : '') + (mins ? mins + 'm' : '');
     },
   },
+
+  computed: {
+    day() {
+      return this.$store.state.day;
+    },
+    screens() {
+      // return this.film.screens.filter(sc);
+      return Object.keys(this.film.screens).reduce((acc, screen) => {
+        const dayShows = this.film.screens[screen].filter(show => {
+          return show.date.includes(this.day);
+        });
+
+        if (dayShows.length) {
+          acc[screen] = dayShows;
+        }
+
+        return acc;
+      }, {});
+    },
+    hasScreens() {
+      return Object.keys(this.screens).length;
+    },
+  },
 };
 </script>
 
 <template>
-  <div class="film">
+  <div class="film" v-if="hasScreens">
     <div class="poster">
       <!-- <img :src="film.img" alt=""> -->
     </div>
     <div>
       <div>{{ film.title }}</div>
       <div>{{ film.length | hours }}</div>
-      <Screen v-for="(shows, type) in film.screens" :key="type" :shows="shows" :type="type" />
+      <Screen v-for="(shows, type) in screens" :key="type" :shows="shows" :type="type" />
     </div>
   </div>
 </template>
@@ -31,6 +54,9 @@ export default {
 <style lang="scss">
 .poster {
   width: 100px;
+  flex-shrink: 0;
+  height: 100px;
+  background-color: #eee;
 
   img {
     width: 100%;
@@ -38,5 +64,6 @@ export default {
 }
 .film {
   display: flex;
+  margin-bottom: 20px;
 }
 </style>

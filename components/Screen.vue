@@ -10,11 +10,8 @@ export default {
   props: ['shows', 'type'],
 
   filters: {
-    hours(value) {
-      if (!value) return '';
-      const hours = Math.floor(value / 60);
-      const mins = value % 60;
-      return (hours ? hours + 'h ' : '') + (mins ? mins + 'm' : '');
+    time(value) {
+      return value.split('T')[1].split(':00Z')[0];
     },
   },
 
@@ -29,11 +26,20 @@ export default {
 <template>
   <div class="screen">
     <h3>{{ title }}</h3>
-    <div v-for="show in shows" :key="show.date">
-      {{show.date}}
+    <div class="shows">
+      <div v-for="show in shows" :key="show.date" class="show">
+        {{ show.date | time }}
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss">
+.shows {
+  display: flex;
+  flex-wrap: wrap;
+}
+.show {
+  padding: 2px 4px;
+}
 </style>

@@ -13,21 +13,28 @@ const store = () => {
     // },
 
     state: {
-      locations: [],
-      films: [],
+      // locations: [],
+      // films: [],
+      day: '',
     },
 
     mutations: {
-      weekly(state, weekly) {
-        state.weekly = weekly;
-      },
+      // weekly(state, weekly) {
+      //   state.weekly = weekly;
+      // },
 
-      locations(state, locations) {
-        state.locations = locations;
-      },
+      // locations(state, locations) {
+      //   state.locations = locations;
+      // },
 
-      films(state, films) {
-        state.films = films;
+      // films(state, films) {
+      //   state.films = films;
+      // },
+
+      setDay(state) {
+        const d = new Date();
+        const m = d.getMonth() < 10 ? '0' + (d.getMonth() + 1) : d.getMonth();
+        state.day = `${d.getFullYear()}-${m}-${d.getDate()}`;
       },
     },
   });
