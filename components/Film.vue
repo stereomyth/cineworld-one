@@ -40,22 +40,29 @@ export default {
 
 <template>
   <div class="film" v-if="hasScreens">
-    <div class="poster">
-      <!-- <img :src="film.img" alt=""> -->
+    <div class="poster-slot">
+      <div class="poster">
+        <img :src="film.img" alt="">
+      </div>
     </div>
     <div>
-      <div>{{ film.title }}</div>
-      <div>{{ film.length | hours }}</div>
+      <div class="title">{{ film.title }}</div>
+      <div class="hours">{{ film.length | hours }}</div>
       <Screen v-for="(shows, type) in screens" :key="type" :shows="shows" :type="type" />
     </div>
   </div>
 </template>
 
 <style lang="scss">
-.poster {
+.poster-slot {
   width: 100px;
   flex-shrink: 0;
+}
+.poster {
   height: 100px;
+  height: 0;
+  padding-bottom: (716/483) * 100%;
+  overflow: hidden;
   background-color: #eee;
 
   img {
@@ -65,5 +72,10 @@ export default {
 .film {
   display: flex;
   margin-bottom: 20px;
+}
+
+.hours {
+  // font-style: italic;
+  color: #444;
 }
 </style>
