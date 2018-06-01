@@ -13,28 +13,16 @@ const store = () => {
     // },
 
     state: {
-      // locations: [],
-      // films: [],
       day: '',
     },
 
     mutations: {
-      // weekly(state, weekly) {
-      //   state.weekly = weekly;
-      // },
-
-      // locations(state, locations) {
-      //   state.locations = locations;
-      // },
-
-      // films(state, films) {
-      //   state.films = films;
-      // },
-
       setDay(state) {
         const d = new Date();
-        const m = d.getMonth() < 10 ? '0' + (d.getMonth() + 1) : d.getMonth();
-        state.day = `${d.getFullYear()}-${m}-${d.getDate()}`;
+
+        state.day = `${d.getFullYear()}-${('0' + (d.getMonth() + 1)).slice(
+          -2
+        )}-${('0' + d.getDate()).slice(-2)}`;
       },
     },
   });
