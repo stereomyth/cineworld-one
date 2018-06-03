@@ -1,4 +1,5 @@
 import Vuex from 'vuex';
+import { DateTime } from 'luxon';
 
 const store = () => {
   return new Vuex.Store({
@@ -18,12 +19,7 @@ const store = () => {
 
     mutations: {
       setDay(state) {
-        const date = new Date();
-        const y = date.getFullYear();
-        const m = ('0' + (date.getMonth() + 1)).slice(-2);
-        const d = ('0' + date.getDate()).slice(-2);
-
-        state.day = `${y}-${m}-${d}`;
+        state.day = DateTime.local().toISODate();
       },
     },
   });
