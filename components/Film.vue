@@ -1,5 +1,6 @@
 <script>
 import Screen from '~/components/Screen';
+
 export default {
   components: { Screen },
   props: ['film'],
