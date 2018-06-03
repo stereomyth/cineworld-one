@@ -6,6 +6,7 @@ export default {
   components: { HeadBar, FootBar },
 
   beforeCreate() {
+    this.$store.commit('getOpts');
     this.$store.commit('setDay');
   },
 };

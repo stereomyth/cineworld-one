@@ -1,17 +1,11 @@
 import Vuex from 'vuex';
 import { DateTime } from 'luxon';
 
+import opts from '~/store/opts';
+
 const store = () => {
-  return new Vuex.Store({
-    // actions: {
-    //   nuxtServerInit({ commit }, { req }) {
-    //     return data.get().then(data => {
-    //       commit('locations', data.locations);
-    //       commit('films', data.films);
-    //       commit('weekly', data.weekly);
-    //     });
-    //   },
-    // },
+  const store = new Vuex.Store({
+    modules: { opts },
 
     state: {
       day: '',
@@ -23,6 +17,14 @@ const store = () => {
       },
     },
   });
+
+  store.subscribe((mutation, state) => {
+    if (typeof localStorage != 'undefined') {
+      localStorage.opts = JSON.stringify(state.opts);
+    }
+  });
+
+  return store;
 };
 
 export default store;
