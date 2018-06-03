@@ -42,6 +42,7 @@ export default {
         <!-- <div class="postcode">{{ location.postcode }}</div> -->
       </div>
     </transition-group>
+    <div v-if="!locations.length">No matching locations</div>
 
   </div>
 </template>
