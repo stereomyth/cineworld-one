@@ -19,6 +19,10 @@ export default {
   methods: {
     choose(location) {
       this.$store.commit('setLocation', location);
+      this.$router.push(location.slug);
+    },
+    clear() {
+      this.term = '';
     },
   },
 };
@@ -29,9 +33,9 @@ export default {
 
     <h3>Select location</h3>
 
-    <input type="text" placeholder="search" class="search" v-model="term">
+    <input type="text" placeholder="search" class="search" v-model="term" @keyup.esc="clear">
 
-    <transition-group name="list" class="row">
+    <transition-group name="list" class="row list">
       <div class="cinema col-sm-6" @click="choose(location)"
         v-for="location in locations" :key="location.slug">
         <div class="name">{{ location.name }}</div>
@@ -51,12 +55,9 @@ export default {
   padding-left: 15px;
 }
 .cinema {
-  //   padding: 3px;
-  //   width: 25%;
-  //   font-size: 12px;
-  //   display: block;
   color: black;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .name {
@@ -67,5 +68,10 @@ export default {
 .postcode {
   font-size: 12px;
   font-weight: 600;
+}
+.list {
+  // margin: 10px 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 </style>
