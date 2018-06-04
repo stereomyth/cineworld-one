@@ -1,9 +1,10 @@
 <script>
 import remedy from '~/plugins/remedy';
 import Film from '~/components/Film';
+import DaySelect from '~/components/DaySelect';
 
 export default {
-  components: { Film },
+  components: { Film, DaySelect },
   asyncData({ params }) {
     return remedy('weekly', params.location).then(data => {
       const { films, ...cinema } = data;
@@ -15,6 +16,7 @@ export default {
 
 <template>
   <section class="container">
+    <DaySelect/>
     <h1>{{cinema.name}}</h1>
     <div class="row">
       <Film v-for="film in films" :key="film.id" :film="film"

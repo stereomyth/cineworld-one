@@ -1,7 +1,7 @@
 import Vuex from 'vuex';
 import { DateTime } from 'luxon';
 
-import opts from '~/store/opts';
+import opts from '~/store/options';
 
 const store = () => {
   const store = new Vuex.Store({
@@ -12,8 +12,15 @@ const store = () => {
     },
 
     mutations: {
-      setDay(state) {
+      today(state) {
         state.day = DateTime.local().toISODate();
+      },
+    },
+
+    actions: {
+      days({ commit, state }) {
+        // commit('today');
+        // commit('selectDay', state.opts.day);
       },
     },
   });

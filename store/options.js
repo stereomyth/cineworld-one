@@ -1,5 +1,7 @@
+import { DateTime } from 'luxon';
+
 export default {
-  state: { location: {} },
+  state: { location: {}, day: '' },
 
   mutations: {
     getOpts(state) {
@@ -10,6 +12,10 @@ export default {
 
     setLocation(state, location) {
       state.location = location;
+    },
+
+    selectDay(state, day) {
+      state.day = day || DateTime.local().toISODate();
     },
   },
 };

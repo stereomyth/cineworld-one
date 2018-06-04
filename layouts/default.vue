@@ -7,7 +7,7 @@ export default {
 
   beforeCreate() {
     this.$store.commit('getOpts');
-    this.$store.commit('setDay');
+    this.$store.dispatch('days');
   },
 };
 </script>

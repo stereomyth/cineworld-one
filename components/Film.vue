@@ -16,7 +16,7 @@ export default {
 
   computed: {
     day() {
-      return this.$store.state.day;
+      return this.$store.state.opts.day;
     },
     screens() {
       // return this.film.screens.filter(sc);
