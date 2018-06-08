@@ -8,18 +8,18 @@ const store = () => {
     modules: { opts },
 
     state: {
-      day: '',
+      today: '',
     },
 
     mutations: {
       today(state) {
-        state.day = DateTime.local().toISODate();
+        state.today = DateTime.local().toISODate();
       },
     },
 
     actions: {
       days({ commit, state }) {
-        // commit('today');
+        commit('today');
         // commit('selectDay', state.opts.day);
       },
     },
