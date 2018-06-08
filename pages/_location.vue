@@ -18,10 +18,12 @@ export default {
   <section class="container">
     <DaySelect/>
     <h1>{{cinema.name}}</h1>
-    <div class="row">
-      <Film v-for="film in films" :key="film.id" :film="film"
-        class="col-md-6 col-lg-4 col-xl-3" />
-    </div>
+    <no-ssr>
+      <div class="row">
+        <Film v-for="film in films" :key="film.id" :film="film"
+          class="col-md-6 col-lg-4 col-xl-3" />
+      </div>
+    </no-ssr>
   </section>
 </template>
 
