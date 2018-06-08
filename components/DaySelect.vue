@@ -1,22 +1,40 @@
 <script>
 import { DateTime } from 'luxon';
 
-export default {
-  beforeCreate() {
-    this.days = [];
+const names = ['Today', 'Tomorrow'];
 
-    for (let i = 0; i < 4; i++) {
-      const d = DateTime.local().plus({ days: i });
-      this.days.push({
-        title: d.toFormat('MMM d'),
-        slug: d.toISODate(),
-      });
-    }
-  },
+export default {
+  // beforeCreate() {
+  //   this.days = [];
+
+  //   for (let i = 0; i < 4; i++) {
+  //     const d = DateTime.local().plus({ days: i });
+  //     this.days.push({
+  //       name: d.toFormat('cccc'),
+  //       date: d.toFormat('MMM d'),
+  //       slug: d.toISODate(),
+  //     });
+  //   }
+  // },
 
   computed: {
     selected() {
       return this.$store.state.opts.day;
+    },
+
+    days() {
+      const days = [];
+
+      for (let i = 0; i < 4; i++) {
+        const d = DateTime.local().plus({ days: i });
+        days.push({
+          name: i < 2 ? names[i] : d.toFormat('cccc'),
+          date: d.toFormat('MMM d'),
+          slug: d.toISODate(),
+        });
+      }
+
+      return days;
     },
   },
 
@@ -30,8 +48,10 @@ export default {
 
 <template>
   <div class="ds">
-    <div v-for="day in days" :key="day.slug" class="day" :class="{selected: selected === day.slug}" @click="select(day)">
-      {{day.title}}
+    <div v-for="day in days" :key="day.slug" class="day"
+      :class="{selected: selected === day.slug}" @click="select(day)">
+      <div class="name">{{ day.name }}</div>
+      {{day.date}}
     </div>
     <!-- <div>Today</div> -->
   </div>
@@ -40,16 +60,17 @@ export default {
 <style lang="scss">
 .ds {
   display: flex;
-
-  div {
-    padding: 10px;
-  }
 }
 
 .day {
+  padding: 10px;
   &.selected {
     background-color: red;
     color: white;
   }
+}
+
+.name {
+  font-weight: bold;
 }
 </style>
