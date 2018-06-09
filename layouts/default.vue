@@ -1,4 +1,6 @@
 <script>
+import { DateTime } from 'luxon';
+
 import HeadBar from '~/components/HeadBar';
 import FootBar from '~/components/FootBar';
 
@@ -8,6 +10,20 @@ export default {
   beforeCreate() {
     this.$store.commit('getOpts');
     this.$store.dispatch('days');
+  },
+  created() {
+    this.timer = setInterval(() => this.check(), 60 * 1000);
+  },
+  beforeDestroy() {
+    clearInterval(this.timer);
+  },
+
+  methods: {
+    check() {
+      if (this.$store.state.today !== DateTime.local().toISODate()) {
+        this.$store.dispatch('days');
+      }
+    },
   },
 };
 </script>
