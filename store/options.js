@@ -30,5 +30,8 @@ export default {
     toggleHidden(state) {
       state.showHidden = !state.showHidden;
     },
+    toggleOptions(state) {
+      state.showOptions = !state.showOptions;
+    },
   },
 };

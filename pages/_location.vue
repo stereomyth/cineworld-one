@@ -1,21 +1,26 @@
 <script>
+import { mapState } from 'vuex';
+
 import remedy from '~/plugins/remedy';
 import Film from '~/components/Film';
 import DaySelect from '~/components/DaySelect';
+import Options from '~/components/Options';
 
 export default {
-  components: { Film, DaySelect },
+  components: { Film, DaySelect, Options },
   asyncData({ params }) {
     return remedy('weekly', params.location).then(data => {
       const { films, ...cinema } = data;
       return { films, cinema };
     });
   },
+  computed: mapState({ showOptions: state => state.opts.showOptions }),
 };
 </script>
 
 <template>
   <section class="container">
+    <Options v-if="showOptions"/>
     <DaySelect/>
     <h1>{{cinema.name}}</h1>
     <no-ssr>
