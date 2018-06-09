@@ -19,14 +19,14 @@ const store = () => {
 
     getters: {
       ztime(state) {
-        return state.now.toFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        return state.now ? state.now.toFormat("yyyy-MM-dd'T'HH:mm:ss'Z'") : '';
       },
     },
 
     actions: {
       start({ dispatch }) {
         dispatch('now');
-        setInterval(() => dispatch('now'), 1000 * 6);
+        setInterval(() => dispatch('now'), 1000 * 60);
       },
 
       now({ commit, state }) {
