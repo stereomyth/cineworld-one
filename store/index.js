@@ -12,15 +12,22 @@ const store = () => {
     },
 
     mutations: {
-      today(state) {
-        state.today = DateTime.local().toISODate();
+      today(state, today) {
+        state.today = today;
       },
     },
 
     actions: {
-      days({ commit, state }) {
-        commit('today');
-        // commit('selectDay', state.opts.day);
+      days({ commit, state, dispatch }) {
+        const d = DateTime.local();
+        const today = d.toISODate();
+        const end = d.plus({ days: 4 }).toISODate();
+
+        commit('today', today);
+
+        if (today > state.opts.day || end < state.opts.day) {
+          commit('setDay', today);
+        }
       },
     },
   });

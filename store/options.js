@@ -14,8 +14,8 @@ export default {
       state.location = location;
     },
 
-    selectDay(state, day) {
-      state.day = day || DateTime.local().toISODate();
+    setDay(state, day) {
+      state.day = day;
     },
   },
 };
