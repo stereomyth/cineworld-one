@@ -2,7 +2,7 @@ import { DateTime } from 'luxon';
 import { without } from 'lodash';
 
 export default {
-  state: { location: {}, day: '', hidden: [] },
+  state: { location: {}, day: '', hidden: [], showHidden: false },
 
   mutations: {
     getOpts(state) {
@@ -25,6 +25,10 @@ export default {
       } else {
         state.hidden.push(film);
       }
+    },
+
+    toggleHidden(state) {
+      state.showHidden = !state.showHidden;
     },
   },
 };
