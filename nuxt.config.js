@@ -22,6 +22,8 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
 
+  mode: 'spa',
+
   css: [
     'bootstrap/scss/bootstrap-reboot.scss',
     'bootstrap/scss/bootstrap-grid.scss',
