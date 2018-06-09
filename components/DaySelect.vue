@@ -1,46 +1,32 @@
 <script>
 import { DateTime } from 'luxon';
 
-const names = ['Today', 'Tomorrow'];
+const names = ['Today', 'Tomorrow', '', ''];
 
 export default {
-  // beforeCreate() {
-  //   this.days = [];
-
-  //   for (let i = 0; i < 4; i++) {
-  //     const d = DateTime.local().plus({ days: i });
-  //     this.days.push({
-  //       name: d.toFormat('cccc'),
-  //       date: d.toFormat('MMM d'),
-  //       slug: d.toISODate(),
-  //     });
-  //   }
-  // },
-
   computed: {
     selected() {
       return this.$store.state.opts.day;
     },
 
     days() {
-      const days = [];
+      const today = DateTime.fromISO(this.$store.state.today);
 
-      for (let i = 0; i < 4; i++) {
-        const d = DateTime.local().plus({ days: i });
-        days.push({
-          name: i < 2 ? names[i] : d.toFormat('cccc'),
+      return names.map((name, i) => {
+        const d = today.plus({ days: i });
+
+        return {
+          name: name ? name : d.toFormat('cccc'),
           date: d.toFormat('MMM d'),
           slug: d.toISODate(),
-        });
-      }
-
-      return days;
+        };
+      });
     },
   },
 
   methods: {
     select(day) {
-      this.$store.commit('selectDay', day.slug);
+      this.$store.commit('setDay', day.slug);
     },
   },
 };
@@ -53,7 +39,6 @@ export default {
       <div class="name">{{ day.name }}</div>
       {{day.date}}
     </div>
-    <!-- <div>Today</div> -->
   </div>
 </template>
 
