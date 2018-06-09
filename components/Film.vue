@@ -35,14 +35,24 @@ export default {
     hasScreens() {
       return Object.keys(this.screens).length;
     },
+    isHidden() {
+      return this.$store.state.opts.hidden.includes(this.film.slug);
+      // return this.$store.state.opts.hidden.hasOwnProperty(this.film.slug);
+    },
+  },
+
+  methods: {
+    toggle() {
+      this.$store.commit('toggleFilm', this.film.slug);
+    },
   },
 };
 </script>
 
 <template>
-  <div class="film" v-if="hasScreens">
+  <div class="film" v-if="hasScreens && (!isHidden)">
     <div class="poster-slot">
-      <div class="poster">
+      <div class="poster" @click="toggle">
         <img :src="film.img" alt="">
       </div>
     </div>
