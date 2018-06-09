@@ -19,13 +19,16 @@ export default {
     title() {
       return types[this.type] || this.type;
     },
+    not2d() {
+      return this.type !== '2D';
+    },
   },
 };
 </script>
 
 <template>
   <div class="screen">
-    <h3>{{ title }}</h3>
+    <h3 v-if="not2d">{{ title }}</h3>
     <div class="shows">
       <div v-for="show in shows" :key="show.date" class="show">
         {{ show.date | time }}
