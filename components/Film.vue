@@ -1,4 +1,6 @@
 <script>
+import { mapState } from 'vuex';
+
 import Screen from '~/components/Screen';
 
 export default {
@@ -35,10 +37,12 @@ export default {
     hasScreens() {
       return Object.keys(this.screens).length;
     },
-    isHidden() {
+    hidden() {
       return this.$store.state.opts.hidden.includes(this.film.slug);
       // return this.$store.state.opts.hidden.hasOwnProperty(this.film.slug);
     },
+
+    ...mapState({ showHidden: state => state.opts.showHidden }),
   },
 
   methods: {
@@ -50,7 +54,7 @@ export default {
 </script>
 
 <template>
-  <div class="film" v-if="hasScreens && (!isHidden)">
+  <div class="film" v-if="hasScreens && (!hidden || showHidden)" :class="{hidden}" >
     <div class="poster-slot">
       <div class="poster" @click="toggle">
         <img :src="film.img" alt="">
@@ -83,6 +87,10 @@ export default {
 .film {
   display: flex;
   margin-bottom: 20px;
+
+  &.hidden {
+    opacity: 0.5;
+  }
 }
 
 .hours {
