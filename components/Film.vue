@@ -39,7 +39,6 @@ export default {
     },
     hidden() {
       return this.$store.state.opts.hidden.includes(this.film.slug);
-      // return this.$store.state.opts.hidden.hasOwnProperty(this.film.slug);
     },
 
     ...mapState({ showHidden: state => state.opts.showHidden }),

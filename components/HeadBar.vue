@@ -2,7 +2,7 @@
 import { mapMutations } from 'vuex';
 
 export default {
-  methods: mapMutations(['toggleHidden']),
+  methods: mapMutations(['toggleHidden', 'toggleOptions']),
 };
 </script>
 
@@ -10,7 +10,7 @@ export default {
   <header>
     <div class="button" @click="toggleHidden">H</div>
     <h1 class="brand">Cineworld <span>One</span></h1>
-    <div class="button"></div>
+    <div class="button" @click="toggleOptions">O</div>
   </header>
 </template>
 
