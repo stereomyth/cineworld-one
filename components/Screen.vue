@@ -1,4 +1,6 @@
 <script>
+import { DateTime } from 'luxon';
+
 const types = {
   '3D-IMAX': 'IMAX 3D',
   '2D-IMAX': 'IMAX',
@@ -22,6 +24,9 @@ export default {
     not2d() {
       return this.type !== '2D';
     },
+    now() {
+      return this.$store.getters.ztime;
+    },
   },
 };
 </script>
@@ -30,7 +35,7 @@ export default {
   <div class="screen">
     <h3 v-if="not2d">{{ title }}</h3>
     <div class="shows">
-      <div v-for="show in shows" :key="show.date" class="show">
+      <div v-for="show in shows" :key="show.date" class="show" v-if="show.date > now">
         {{ show.date | time }}
       </div>
     </div>
