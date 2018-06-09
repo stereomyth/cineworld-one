@@ -10,13 +10,13 @@ export default {
     },
 
     days() {
-      const today = DateTime.fromISO(this.$store.state.today);
+      const today = this.$store.state.now;
 
       return names.map((name, i) => {
         const d = today.plus({ days: i });
 
         return {
-          name: name ? name : d.toFormat('cccc'),
+          name: name || d.toFormat('cccc'),
           date: d.toFormat('MMM d'),
           slug: d.toISODate(),
         };

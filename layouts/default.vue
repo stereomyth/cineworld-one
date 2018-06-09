@@ -9,21 +9,7 @@ export default {
 
   beforeCreate() {
     this.$store.commit('getOpts');
-    this.$store.dispatch('days');
-  },
-  created() {
-    this.timer = setInterval(() => this.check(), 60 * 1000);
-  },
-  beforeDestroy() {
-    clearInterval(this.timer);
-  },
-
-  methods: {
-    check() {
-      if (this.$store.state.today !== DateTime.local().toISODate()) {
-        this.$store.dispatch('days');
-      }
-    },
+    this.$store.dispatch('start');
   },
 };
 </script>

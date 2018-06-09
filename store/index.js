@@ -8,24 +8,37 @@ const store = () => {
     modules: { opts },
 
     state: {
-      today: '',
+      now: '',
     },
 
     mutations: {
-      today(state, today) {
-        state.today = today;
+      updateTime(state, now) {
+        state.now = now;
+      },
+    },
+
+    getters: {
+      ztime(state) {
+        return state.now.toFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
       },
     },
 
     actions: {
-      days({ commit, state, dispatch }) {
+      start({ dispatch }) {
+        dispatch('now');
+        setInterval(() => dispatch('now'), 1000 * 6);
+      },
+
+      now({ commit, state }) {
         const d = DateTime.local();
         const today = d.toISODate();
-        const end = d.plus({ days: 4 }).toISODate();
 
-        commit('today', today);
+        commit('updateTime', d);
 
-        if (today > state.opts.day || end < state.opts.day) {
+        if (
+          today > state.opts.day ||
+          d.plus({ days: 4 }).toISODate() < state.opts.day
+        ) {
           commit('setDay', today);
         }
       },
