@@ -1,9 +1,22 @@
 <script>
+import { mapState, mapMutations } from 'vuex';
+
 export default {
+  created() {
+    this.screens = Object.assign({}, this.$store.state.opts.screens);
+  },
   computed: {
-    location() {
-      return this.$store.state.opts.location;
-    },
+    ...mapState({
+      location: state => state.opts.location,
+    }),
+  },
+  methods: {
+    ...mapMutations(['setScreens']),
+  },
+  data() {
+    return {
+      screens: {},
+    };
   },
 };
 </script>
@@ -16,6 +29,16 @@ export default {
       <div class="value">{{location.name}}</div>
     </div>
     <hr>
+    <div>
+      <div class="label">Show Screening Types</div>
+      <div class="row">
+        <div class="value col-6" v-for="(screen, key) in screens" :key="key">
+          {{screen.name}}
+          <input type="checkbox" v-model="screen.show" @change="setScreens(screens)">
+        </div>
+      </div>
+    </div>
+    <hr>
 
   </div>
 </template>
@@ -25,5 +48,8 @@ export default {
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 0.1em;
+}
+input {
+  float: right;
 }
 </style>

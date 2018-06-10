@@ -17,9 +17,9 @@ export default {
   },
 
   computed: {
-    day() {
-      return this.$store.state.opts.day;
-    },
+    // day() {
+    //   return this.$store.state.opts.day;
+    // },
     screens() {
       // return this.film.screens.filter(sc);
       return Object.keys(this.film.screens).reduce((acc, screen) => {
@@ -27,7 +27,7 @@ export default {
           return show.date.includes(this.day);
         });
 
-        if (dayShows.length) {
+        if (dayShows.length && this.screenTypes[screen].show) {
           acc[screen] = dayShows;
         }
 
@@ -41,7 +41,11 @@ export default {
       return this.$store.state.opts.hidden.includes(this.film.slug);
     },
 
-    ...mapState({ showHidden: state => state.opts.showHidden }),
+    ...mapState({
+      showHidden: state => state.opts.showHidden,
+      day: state => state.opts.day,
+      screenTypes: state => state.opts.screens,
+    }),
   },
 
   methods: {

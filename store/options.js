@@ -2,7 +2,21 @@ import { DateTime } from 'luxon';
 import { without } from 'lodash';
 
 export default {
-  state: { location: {}, day: '', hidden: [], showHidden: false },
+  state: {
+    location: {},
+    day: '',
+    hidden: [],
+    showHidden: false,
+    showOptions: false,
+    screens: {
+      '2D': { name: '2D', show: true },
+      '3D': { name: '3D', show: true },
+      '2D-IMAX': { name: 'IMAX', show: true },
+      '3D-IMAX': { name: 'IMAX 3D', show: true },
+      '3D-4DX': { name: '4DX', show: true },
+      '2D-4DX': { name: '4DX (2D)', show: true },
+    },
+  },
 
   mutations: {
     getOpts(state) {
@@ -17,6 +31,10 @@ export default {
 
     setDay(state, day) {
       state.day = day;
+    },
+
+    setScreens(state, screens) {
+      state.screens = screens;
     },
 
     toggleFilm(state, film) {
