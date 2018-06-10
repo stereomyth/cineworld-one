@@ -14,7 +14,15 @@ export default {
       return { films, cinema };
     });
   },
-  computed: mapState({ showOptions: state => state.opts.showOptions }),
+  created() {
+    if (!this.location.name) {
+      this.$store.commit('setLocation', this.cinema);
+    }
+  },
+  computed: mapState({
+    showOptions: state => state.opts.showOptions,
+    location: state => state.opts.location,
+  }),
 };
 </script>
 
