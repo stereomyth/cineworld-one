@@ -36,10 +36,10 @@ const store = () => {
         commit('updateTime', d);
 
         if (
-          today > state.opts.day ||
-          d.plus({ days: 4 }).toISODate() < state.opts.day
+          today > state.opts.currentDay ||
+          d.plus({ days: 4 }).toISODate() < state.opts.currentDay
         ) {
-          commit('setDay', today);
+          commit('opts/setDay', today);
         }
       },
     },

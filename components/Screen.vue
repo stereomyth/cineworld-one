@@ -1,5 +1,6 @@
 <script>
 import { DateTime } from 'luxon';
+import { mapGetters } from 'vuex';
 
 const types = {
   '3D-IMAX': 'IMAX 3D',
@@ -24,9 +25,7 @@ export default {
     not2d() {
       return this.type !== '2D';
     },
-    now() {
-      return this.$store.getters.ztime;
-    },
+    ...mapGetters(['ztime']),
   },
 };
 </script>
@@ -35,7 +34,7 @@ export default {
   <div class="screen">
     <h3 v-if="not2d">{{ title }}</h3>
     <div class="shows">
-      <div v-for="show in shows" :key="show.date" class="show" v-if="show.date > now">
+      <div v-for="show in shows" :key="show.date" class="show" v-if="show.date > ztime">
         {{ show.date | time }}
       </div>
     </div>

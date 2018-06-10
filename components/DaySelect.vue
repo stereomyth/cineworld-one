@@ -1,13 +1,12 @@
 <script>
 import { DateTime } from 'luxon';
+import { mapMutations, mapState } from 'vuex';
 
 const names = ['Today', 'Tomorrow', '', ''];
 
 export default {
   computed: {
-    selected() {
-      return this.$store.state.opts.day;
-    },
+    ...mapState('opts', ['currentDay']),
 
     days() {
       const today = this.$store.state.now;
@@ -25,9 +24,7 @@ export default {
   },
 
   methods: {
-    select(day) {
-      this.$store.commit('setDay', day.slug);
-    },
+    ...mapMutations('opts', ['setDay']),
   },
 };
 </script>
@@ -35,7 +32,7 @@ export default {
 <template>
   <div class="ds">
     <div v-for="day in days" :key="day.slug" class="day"
-      :class="{selected: selected === day.slug}" @click="select(day)">
+      :class="{selected: currentDay === day.slug}" @click="setDay(day.slug)">
       <div class="name">{{ day.name }}</div>
       {{day.date}}
     </div>
@@ -49,6 +46,7 @@ export default {
 
 .day {
   padding: 10px;
+
   &.selected {
     background-color: red;
     color: white;

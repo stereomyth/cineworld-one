@@ -1,5 +1,5 @@
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 import Screen from '~/components/Screen';
 
@@ -17,14 +17,11 @@ export default {
   },
 
   computed: {
-    // day() {
-    //   return this.$store.state.opts.day;
-    // },
     screens() {
       // return this.film.screens.filter(sc);
       return Object.keys(this.film.screens).reduce((acc, screen) => {
         const dayShows = this.film.screens[screen].filter(show => {
-          return show.date.includes(this.day);
+          return show.date.includes(this.currentDay);
         });
 
         if (dayShows.length && this.screenTypes[screen].show) {
@@ -37,29 +34,22 @@ export default {
     hasScreens() {
       return Object.keys(this.screens).length;
     },
-    hidden() {
-      return this.$store.state.opts.hidden.includes(this.film.slug);
+    isHidden() {
+      return this.hidden.includes(this.film.slug);
     },
-
-    ...mapState({
-      showHidden: state => state.opts.showHidden,
-      day: state => state.opts.day,
-      screenTypes: state => state.opts.screens,
-    }),
+    ...mapState('opts', ['screenTypes', 'showHidden', 'currentDay', 'hidden']),
   },
 
   methods: {
-    toggle() {
-      this.$store.commit('toggleFilm', this.film.slug);
-    },
+    ...mapMutations('opts', ['toggleFilm']),
   },
 };
 </script>
 
 <template>
-  <div class="film" v-if="hasScreens && (!hidden || showHidden)" :class="{hidden}" >
+  <div class="film" v-if="hasScreens && (!isHidden || showHidden)" :class="{hidden: isHidden}" >
     <div class="poster-slot">
-      <div class="poster" @click="toggle">
+      <div class="poster" @click="toggleFilm(film.slug)">
         <img :src="film.img" alt="">
       </div>
     </div>

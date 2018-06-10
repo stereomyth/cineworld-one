@@ -8,17 +8,20 @@ import Options from '~/components/Options';
 
 export default {
   components: { Film, DaySelect, Options },
+
   asyncData({ params }) {
     return remedy('weekly', params.location).then(data => {
       const { films, ...cinema } = data;
       return { films, cinema };
     });
   },
+
   created() {
     if (!this.location.name) {
-      this.$store.commit('setLocation', this.cinema);
+      this.$store.commit('opts/setLocation', this.cinema);
     }
   },
+
   computed: mapState({
     showOptions: state => state.opts.showOptions,
     location: state => state.opts.location,

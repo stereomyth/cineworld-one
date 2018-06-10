@@ -2,13 +2,15 @@ import { DateTime } from 'luxon';
 import { without } from 'lodash';
 
 export default {
+  namespaced: true,
+
   state: {
     location: {},
-    day: '',
+    currentDay: '',
     hidden: [],
     showHidden: false,
     showOptions: false,
-    screens: {
+    screenTypes: {
       '2D': { name: '2D', show: true },
       '3D': { name: '3D', show: true },
       '2D-IMAX': { name: 'IMAX', show: true },
@@ -30,11 +32,11 @@ export default {
     },
 
     setDay(state, day) {
-      state.day = day;
+      state.currentDay = day;
     },
 
     setScreens(state, screens) {
-      state.screens = screens;
+      state.screenTypes = screens;
     },
 
     toggleFilm(state, film) {

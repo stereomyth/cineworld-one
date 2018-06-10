@@ -3,15 +3,13 @@ import { mapState, mapMutations } from 'vuex';
 
 export default {
   created() {
-    this.screens = Object.assign({}, this.$store.state.opts.screens);
+    this.screens = Object.assign({}, this.screenTypes);
   },
   computed: {
-    ...mapState({
-      location: state => state.opts.location,
-    }),
+    ...mapState('opts', ['location', 'screenTypes']),
   },
   methods: {
-    ...mapMutations(['setScreens']),
+    ...mapMutations('opts', ['setScreens']),
   },
   data() {
     return {

@@ -41,7 +41,7 @@ export default {
   methods: {
     choose(location) {
       location = location || this.locations[this.selected];
-      this.$store.commit('setLocation', location);
+      this.$store.commit('opts/setLocation', location);
       this.$router.push(location.slug);
     },
     clamp(val) {

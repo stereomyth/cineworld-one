@@ -2,7 +2,7 @@
 import { mapMutations } from 'vuex';
 
 export default {
-  methods: mapMutations(['toggleHidden', 'toggleOptions']),
+  methods: mapMutations('opts', ['toggleHidden', 'toggleOptions']),
 };
 </script>
 
