@@ -3,20 +3,12 @@ import { mapState, mapMutations } from 'vuex';
 import mapSetters from '~/plugins/mapSetters';
 
 export default {
-  created() {
-    this.screens = Object.assign({}, this.screenTypes);
-  },
   computed: {
-    ...mapState('opts', ['location', 'screenTypes']),
+    ...mapState('opts', ['location']),
     ...mapSetters('opts', { theme: 'setTheme', screenTypes: 'setScreens' }),
   },
   methods: {
     ...mapMutations('opts', ['setScreens']),
-  },
-  data() {
-    return {
-      screens: {},
-    };
   },
 };
 </script>
@@ -46,9 +38,9 @@ export default {
     <div>
       <div class="label">Show Screening Types</div>
       <div class="row">
-        <div class="value col-6" v-for="(screen, key) in screens" :key="key">
+        <div class="value col-6" v-for="(screen, key) in screenTypes" :key="key">
           {{screen.name}}
-          <input type="checkbox" v-model="screen.show" @change="setScreens(screens)">
+          <input type="checkbox" v-model="screen.show">
         </div>
       </div>
     </div>
