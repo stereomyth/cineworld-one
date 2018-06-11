@@ -87,7 +87,6 @@ export default {
 }
 
 .hours {
-  // font-style: italic;
-  color: #444;
+  opacity: 0.6;
 }
 </style>

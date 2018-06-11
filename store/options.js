@@ -5,9 +5,9 @@ export default {
   namespaced: true,
 
   state: {
-    location: {},
     currentDay: '',
     hidden: [],
+    location: {},
     showHidden: false,
     showOptions: false,
     screenTypes: {
@@ -18,6 +18,7 @@ export default {
       '3D-4DX': { name: '4DX', show: true },
       '2D-4DX': { name: '4DX (2D)', show: true },
     },
+    theme: 'light',
   },
 
   mutations: {
@@ -27,16 +28,17 @@ export default {
       }
     },
 
-    setLocation(state, location) {
-      state.location = location;
-    },
-
     setDay(state, day) {
       state.currentDay = day;
     },
-
+    setLocation(state, location) {
+      state.location = location;
+    },
     setScreens(state, screens) {
       state.screenTypes = screens;
+    },
+    setTheme(state, theme) {
+      state.theme = theme;
     },
 
     toggleFilm(state, film) {
@@ -46,7 +48,6 @@ export default {
         state.hidden.push(film);
       }
     },
-
     toggleHidden(state) {
       state.showHidden = !state.showHidden;
     },

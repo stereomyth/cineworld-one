@@ -1,5 +1,6 @@
 <script>
 import { DateTime } from 'luxon';
+import { mapState } from 'vuex';
 
 import HeadBar from '~/components/HeadBar';
 import FootBar from '~/components/FootBar';
@@ -11,11 +12,13 @@ export default {
     this.$store.commit('opts/getOpts');
     this.$store.dispatch('start');
   },
+
+  computed: mapState('opts', ['theme']),
 };
 </script>
 
 <template>
-  <div class="main">
+  <div class="main" :class="[theme]">
     <HeadBar/>
     <nuxt class="page" />
     <FootBar/>
@@ -31,6 +34,11 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  &.dark {
+    background-color: #333;
+    color: #eee;
+  }
 }
 
 .page {

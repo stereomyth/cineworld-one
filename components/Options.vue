@@ -1,5 +1,6 @@
 <script>
 import { mapState, mapMutations } from 'vuex';
+import mapSetters from '~/plugins/mapSetters';
 
 export default {
   created() {
@@ -7,6 +8,7 @@ export default {
   },
   computed: {
     ...mapState('opts', ['location', 'screenTypes']),
+    ...mapSetters('opts', { theme: 'setTheme', screenTypes: 'setScreens' }),
   },
   methods: {
     ...mapMutations('opts', ['setScreens']),
@@ -25,6 +27,20 @@ export default {
     <div>
       <div class="label">Location</div>
       <div class="value">{{location.name}}</div>
+    </div>
+    <hr>
+    <div>
+      <div class="label">Theme</div>
+      <div class="row">
+        <div class="value col-6">
+          Light
+          <input type="radio" id="themeSel" value="light" v-model="theme">
+        </div>
+        <div class="value col-6">
+          Dark
+          <input type="radio" id="themeSel" value="dark" v-model="theme">
+        </div>
+      </div>
     </div>
     <hr>
     <div>
