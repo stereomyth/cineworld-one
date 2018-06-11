@@ -1,5 +1,5 @@
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 import remedy from '~/plugins/remedy';
 import Film from '~/components/Film';
@@ -18,14 +18,12 @@ export default {
 
   created() {
     if (!this.location.name) {
-      this.$store.commit('opts/setLocation', this.cinema);
+      this.setLocation(this.cinema);
     }
   },
 
-  computed: mapState({
-    showOptions: state => state.opts.showOptions,
-    location: state => state.opts.location,
-  }),
+  computed: mapState('opts', ['showOptions', 'location']),
+  methods: mapMutations('opts', ['setLocation']),
 };
 </script>
 
