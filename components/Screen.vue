@@ -1,13 +1,6 @@
 <script>
 import { DateTime } from 'luxon';
-import { mapGetters } from 'vuex';
-
-const types = {
-  '3D-IMAX': 'IMAX 3D',
-  '2D-IMAX': 'IMAX',
-  '3D-4DX': '4DX',
-  '2D-4DX': '4DX (2D)',
-};
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   props: ['shows', 'type'],
@@ -20,11 +13,12 @@ export default {
 
   computed: {
     title() {
-      return types[this.type] || this.type;
+      return this.screenTypes[this.type].name || this.type;
     },
     not2d() {
       return this.type !== '2D';
     },
+    ...mapState('opts', ['screenTypes']),
     ...mapGetters(['ztime']),
   },
 };
