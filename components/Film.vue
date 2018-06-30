@@ -51,7 +51,7 @@ export default {
   <div class="film" v-if="hasScreens && (!isHidden || showHidden)" :class="{hidden: isHidden}" >
     <div class="poster-slot">
       <div class="poster" @click="toggleFilm(film.slug)">
-        <img :src="film.img" alt="">
+        <img :src="`https://www.cineworld.co.uk/xmedia-cw/repo/feats/posters/${film.img}`" alt="">
       </div>
     </div>
     <div>
