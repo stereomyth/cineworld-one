@@ -19,7 +19,6 @@ export default {
       return this.type !== '2D';
     },
     ...mapState('opts', ['screenTypes']),
-    ...mapGetters(['ztime']),
   },
 };
 </script>
@@ -28,7 +27,7 @@ export default {
   <div class="screen">
     <h3 v-if="not2d">{{ title }}</h3>
     <div class="shows">
-      <div v-for="show in shows" :key="show.date" class="show" v-if="show.date > ztime">
+      <div v-for="show in shows" :key="show.date" class="show">
         {{ show.date | time }}
       </div>
     </div>

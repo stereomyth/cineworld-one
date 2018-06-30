@@ -1,5 +1,5 @@
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapGetters } from 'vuex';
 
 import Screen from '~/components/Screen';
 
@@ -21,7 +21,7 @@ export default {
       // return this.film.screens.filter(sc);
       return Object.keys(this.film.screens).reduce((acc, screen) => {
         const dayShows = this.film.screens[screen].filter(show => {
-          return show.date.includes(this.currentDay);
+          return show.date.includes(this.currentDay) && show.date > this.ztime;
         });
 
         if (dayShows.length && this.screenTypes[screen].show) {
@@ -38,6 +38,7 @@ export default {
       return this.hidden.includes(this.film.slug);
     },
     ...mapState('opts', ['screenTypes', 'showHidden', 'currentDay', 'hidden']),
+    ...mapGetters(['ztime']),
   },
 
   methods: {
