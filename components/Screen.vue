@@ -13,12 +13,12 @@ export default {
 
   computed: {
     title() {
-      return this.screenTypes[this.type].name || this.type;
+      return this.screenTypes[this.type] || this.type;
     },
     not2d() {
       return this.type !== '2D';
     },
-    ...mapState('opts', ['screenTypes']),
+    ...mapState(['screenTypes']),
   },
 };
 </script>

@@ -24,7 +24,7 @@ export default {
           return show.date.includes(this.currentDay) && show.date > this.ztime;
         });
 
-        if (dayShows.length && this.screenTypes[screen].show) {
+        if (dayShows.length && this.showScreens[screen]) {
           acc[screen] = dayShows;
         }
 
@@ -37,7 +37,7 @@ export default {
     isHidden() {
       return this.hidden.includes(this.film.slug);
     },
-    ...mapState('opts', ['screenTypes', 'showHidden', 'currentDay', 'hidden']),
+    ...mapState('opts', ['showScreens', 'showHidden', 'currentDay', 'hidden']),
     ...mapGetters(['ztime']),
   },
 

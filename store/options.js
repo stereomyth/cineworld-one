@@ -10,13 +10,13 @@ export default {
     location: {},
     showHidden: false,
     showOptions: false,
-    screenTypes: {
-      '2D': { name: '2D', show: true },
-      '3D': { name: '3D', show: true },
-      '2D-IMAX': { name: 'IMAX', show: true },
-      '3D-IMAX': { name: 'IMAX 3D', show: true },
-      '3D-4DX': { name: '4DX', show: true },
-      '2D-4DX': { name: '4DX (2D)', show: true },
+    showScreens: {
+      '2D': true,
+      '3D': true,
+      '2D-IMAX': true,
+      '3D-IMAX': true,
+      '3D-4DX': true,
+      '2D-4DX': true,
     },
     theme: 'light',
   },
@@ -34,8 +34,8 @@ export default {
     setLocation(state, location) {
       state.location = location;
     },
-    setScreens(state, screens) {
-      state.screenTypes = screens;
+    setScreens(state, slug) {
+      state.showScreens[slug] = !state.showScreens[slug];
     },
     setTheme(state, theme) {
       state.theme = theme;

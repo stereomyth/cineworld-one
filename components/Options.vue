@@ -4,8 +4,9 @@ import mapSetters from '~/plugins/mapSetters';
 
 export default {
   computed: {
-    ...mapState('opts', ['location']),
-    ...mapSetters('opts', { theme: 'setTheme', screenTypes: 'setScreens' }),
+    ...mapState(['screenTypes']),
+    ...mapState('opts', ['location', 'showScreens']),
+    ...mapSetters('opts', { theme: 'setTheme' }),
   },
   methods: {
     ...mapMutations('opts', ['setScreens']),
@@ -38,9 +39,9 @@ export default {
     <div>
       <div class="label">Show Screening Types</div>
       <div class="row">
-        <div class="value col-6" v-for="(screen, key) in screenTypes" :key="key">
-          {{screen.name}}
-          <input type="checkbox" v-model="screen.show">
+        <div class="value col-6" v-for="(name, slug) in screenTypes" :key="slug">
+          {{name}}
+          <input type="checkbox" :checked="showScreens[slug]" @change="setScreens(slug)">
         </div>
       </div>
     </div>

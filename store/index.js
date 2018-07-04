@@ -9,6 +9,14 @@ const store = () => {
 
     state: {
       now: '',
+      screenTypes: {
+        '2D': '2D',
+        '3D': '3D',
+        '2D-IMAX': 'IMAX',
+        '3D-IMAX': 'IMAX 3D',
+        '3D-4DX': '4DX',
+        '2D-4DX': '4DX (2D)',
+      },
     },
 
     mutations: {
