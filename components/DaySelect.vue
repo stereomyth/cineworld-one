@@ -46,6 +46,7 @@ export default {
 
 .day {
   padding: 10px;
+  user-select: none;
 
   &.selected {
     background-color: red;

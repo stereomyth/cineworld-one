@@ -39,5 +39,6 @@ header {
 .button {
   width: 60px;
   text-align: center;
+  cursor: pointer;
 }
 </style>
