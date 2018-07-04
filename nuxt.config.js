@@ -24,6 +24,10 @@ module.exports = {
 
   mode: 'spa',
 
+  generate: {
+    routes: ['/birmingham-broad-street'],
+  },
+
   css: [
     'bootstrap/scss/bootstrap-reboot.scss',
     'bootstrap/scss/bootstrap-grid.scss',
