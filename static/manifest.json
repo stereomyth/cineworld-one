@@ -1,0 +1,9 @@
+{
+  "name": "Cineworld One",
+  "description": "More efficient cinema info",
+  "short_name": "Cineworld",
+  "lang": "en-GB",
+  ​​"orientation": "portrait",
+  "scope": "/",
+  "display": "standalone"
+}

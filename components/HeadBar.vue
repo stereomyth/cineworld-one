@@ -22,6 +22,7 @@ header {
   height: 60px;
   align-items: center;
   margin-bottom: 10px;
+  user-select: none;
 }
 
 .brand {

@@ -14,8 +14,11 @@ module.exports = {
         content: 'More efficient cinema info',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    link: [{ rel: 'stylesheet', href: 'https://use.typekit.net/rzd3grg.css' }],
+    link: [
+      { rel: 'manifest', href: '/manifest.json' },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://use.typekit.net/rzd3grg.css' },
+    ],
   },
   /*
   ** Customize the progress bar color
